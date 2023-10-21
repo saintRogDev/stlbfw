@@ -7,39 +7,82 @@
 
 import SwiftUI
 
-struct HorizontalScrollView: View {
+final class HorizontalScrollViewModel: ObservableObject {
     let title: String?
-    let infoCardList: [InfoCardModel]
+    @Published var infoCardList: [InfoCardModel]
     let seeAllSelected: ((InfoCardModel.Category)->Void)?
+    let shouldScroll: Bool
+    @Published var scrollToID: Int = 0
 
+    init(title: String?,
+         infoCardList: [InfoCardModel],
+         shouldScroll: Bool, 
+         seeAllSelected: ((InfoCardModel.Category) -> Void)?) {
+        self.shouldScroll = shouldScroll
+        self.title = title
+        self.infoCardList = infoCardList
+        self.seeAllSelected = seeAllSelected
+    }
+    
+    
+    func cardModel(for _index: Int) -> InfoCardModel? {
+        let cardModel = infoCardList[_index]
+        if shouldScroll == true && scrollToID == 0 {
+            switch cardModel.type {
+            case .event(let event):
+                guard let eventDate = Date.convertToDate(event.date) else { break }
+                if eventDate < Date() {
+                    scrollToID = _index
+                }
+            default:
+                break
+            }
+        }
+        return cardModel
+    }
+}
+
+struct HorizontalScrollView: View {
+    @ObservedObject var vm: HorizontalScrollViewModel
+    @State private var scrollProxy: ScrollViewProxy? = nil
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            title.map { title in
+            vm.title.map { title in
                 header(text: title)
+                    .padding(.horizontal, 10)
             }
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .top, spacing: infoCardList.count > 2 ? 10 : 15) {
-                    ForEach(0..<infoCardList.count, id: \.self) { i in
-                        let cardModel = infoCardList[i]
-                        InfoCard(model: cardModel)
+            ScrollViewReader { scrollView in
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(alignment: .top, spacing: vm.infoCardList.count > 2 ? 10 : 15) {
+                        ForEach(0..<vm.infoCardList.count, id: \.self) { i in
+                            if let cardModel = vm.cardModel(for: i) {
+                                InfoCard(model: cardModel)
+                            }
+                        }
+                    }
+                    .padding(.horizontal, 10)
+                    .onAppear {
+                        let id = vm.scrollToID
+                        scrollView.scrollTo(id)
                     }
                 }
+//                .scrollDisabled(vm.infoCardList.count < 3)
             }
-            .scrollDisabled(infoCardList.count < 3)
         }
     }
-
-    @ViewBuilder
+    
+    
     func header(text: String) -> some View {
-        HStack(alignment: .bottom) {
+        return HStack(alignment: .bottom) {
             Text(text)
                 .foregroundColor(.primary)
                 .font(.largeTitle)
                 .fontWeight(.bold)
             Spacer()
-            seeAllSelected.map { seeAll in
+            vm.seeAllSelected.map { seeAll in
                 Button {
-                    if let card = infoCardList.first {
+                    if let card = vm.infoCardList.first {
                         seeAll(card.type)
                     }
                 } label: {

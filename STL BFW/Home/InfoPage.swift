@@ -42,13 +42,15 @@ struct InfoPage: View {
         Text(kStlBfwInfo)
             .detailsText(size: 14,
                          scheme: colorScheme)
+            .padding(.horizontal, 10)
 
     }
 
     private var partners: some View {
-        HorizontalScrollView(title: "Partners",
-                             infoCardList: vm.partnerCardModel,
-                             seeAllSelected: nil)
+        HorizontalScrollView(vm: HorizontalScrollViewModel(title: "Partners",
+                                                           infoCardList: vm.partnerCardModel,
+                                                           shouldScroll: false,
+                                                           seeAllSelected: nil))
     }
 
     private var contact: some View {
@@ -57,6 +59,7 @@ struct InfoPage: View {
                           action: {
                 showMailView = true
             })
+            .padding(.horizontal, 10)
     }
 
     private var feedbackCard: some View {
@@ -82,6 +85,7 @@ struct InfoPage: View {
         }
         .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
         .bordered()
+        .padding(.horizontal, 10)
 
     }
 

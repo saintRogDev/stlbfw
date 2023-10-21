@@ -6,12 +6,12 @@
 //
 
 import MapKit
-import SafariServices
 import SwiftUI
 
 struct DetailsView: View {
     @Environment(\.colorScheme) var colorScheme
-    @State var showTicketLink = false
+    @State var urlStringToShow: URL?
+    @State var showInAppBrowser: Bool = false
     private let vm: DetailsViewViewModel
 
     init(category: DetailsViewViewModel.Category) {
@@ -39,12 +39,16 @@ struct DetailsView: View {
         .background {
             colorScheme == .light ? Color.white : Color.black
         }
-        .fullScreenCover(isPresented: $showTicketLink, content: {
-            if let urlString = vm.links?.tickets?.url,
-               let url = URL(string: urlString) {
-                SafariView(url: url)
+        .onChange(of: urlStringToShow) { newValue in
+            if newValue != nil {
+                showInAppBrowser = true
             }
-        })
+        }
+        .fullScreenCover(isPresented: $showInAppBrowser) {
+            if let urlToShow = self.urlStringToShow {
+                SafariView(url: urlToShow)
+            }
+        }
     }
 
     var header: some View {
@@ -126,7 +130,9 @@ struct DetailsView: View {
     var igLink: some View {
         vm.links?.instagram.map { igLink in
             Button {
-//                TODO: link action
+                if let url = URL(string: igLink.url) {
+                    urlStringToShow = url
+                }
             } label: {
                 if let imageName = igLink.image {
                     Label("\(igLink.title)",
@@ -141,7 +147,9 @@ struct DetailsView: View {
     var webLink: some View {
         vm.links?.website.map { website in
             Button {
-                //                TODO: link action
+                if let url = URL(string: website.url) {
+                    urlStringToShow = url
+                }
             } label: {
                 if let imageName = website.image {
                     Label(website.title,
@@ -157,9 +165,20 @@ struct DetailsView: View {
         vm.links?.tickets.map { ticketLink in
             Text(ticketLink.title)
                 .asLongButton {
-                    showTicketLink = true
+                    if let url = URL(string: ticketLink.url) {
+                        urlStringToShow = url
+                    }
                 }
         }
+    }
+    
+    @ViewBuilder
+    func showInAppBrowser(for _urlString: String?) -> some View {
+        if let urlString = _urlString,
+            let url = URL(string: urlString) {
+            SafariView(url: url)
+        }
+        EmptyView()
     }
 }
 
@@ -168,22 +187,4 @@ struct DetailsView_Previews: PreviewProvider {
         Text("Hello World")
     }
 }
-            
-  
-
-struct SafariView: UIViewControllerRepresentable {
-    let url: URL
-
-    func makeUIViewController(context: Context) -> SFSafariViewController {
-        return SFSafariViewController(url: url)
-    }
-
-    func updateUIViewController(_ uiViewController: SFSafariViewController, context: Context) {
-        // Update the view controller if needed
-    }
-}
-
-    
-
-
            

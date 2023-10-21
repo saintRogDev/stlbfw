@@ -61,7 +61,7 @@ struct DetailsViewViewModel {
     let descriptionText: String?
     let imageUrl: String?
     let location: String?
-    let links: Links?
+    private (set) var links: Links?
     let type: Category
 
     init (category: DetailsViewViewModel.Category) {
@@ -74,15 +74,20 @@ struct DetailsViewViewModel {
             descriptionText = designer.description
             imageUrl = designer.instagram
             location = nil
-            let igLink = Link(title: "Instagram",
-                              image: "camera.circle",
-                              url: "https://www.instagram.com")
-            
-            let website = Link(title: "Website",
-                              image: "globe",
-                               url: "https://www.google.com")
-            links = Links(instagram: igLink,
-                          website: website)
+
+            if let ig = designer.instagram {
+                links = Links(instagram: Link(title: "Instagram",
+                                              image: "camera.circle",
+                                              url: ig))
+            }
+            if let web = designer.website {
+                let currentIg = links?.instagram
+                links = Links(instagram: currentIg,
+                              website: Link(title: "Website",
+                                            image: "globe",
+                                            url: web))
+                
+            }
 
         case .event(let event):
             headerImage = nil

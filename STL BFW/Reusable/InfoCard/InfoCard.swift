@@ -1,5 +1,5 @@
 //
-//  HomeCell.swift
+//  InfoCard    .swift
 //  STL BFW
 //
 //  Created by Roger ADT on 9/16/23.
@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import UserNotifications
 
 protocol Cardable {
     var infoCardModel: InfoCardModel { get }
@@ -41,12 +42,12 @@ struct InfoCard: View {
     @State var showDetial: DetailsViewViewModel.Category?
 
     var body: some View {
-            VStack(spacing: 10) {
+            VStack {
                 heading
                 info
-                Spacer()
+                Spacer(minLength: 5)
             }
-            .padding(EdgeInsets(top: 8, leading: 5, bottom: 0, trailing: 5))
+            .padding(5)
             .bordered()
             .detailSheet(detailCategory: $showDetial)
             .onTapGesture {

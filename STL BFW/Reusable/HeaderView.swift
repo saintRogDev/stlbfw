@@ -30,10 +30,9 @@ struct HeaderView<Conent: View>: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                     content()
-                        .padding(.horizontal, 10)
                 }
+                .padding(.bottom, 15)
             }
-            .padding(.bottom, 15)
         }
         .standardBackground(scheme: colorScheme)
     }

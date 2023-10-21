@@ -18,20 +18,15 @@ struct Home: View {
 
     private var mainContent: some View {
         VStack {
-            HorizontalScrollView(title: InfoCardListViewModel.Category.events.title,
-                                 infoCardList: InfoCardListViewModel.infoCardModels(category: .events).filter({ model in
-                switch model.type {
-                case .event(let event):
-                    guard let eventDate = Date.convertToDate(event.date) else { return false }
-                    return eventDate > Date()
-                default:
-                    return true
-                }
-            }),
-                                 seeAllSelected: seeAllSelected)
-            HorizontalScrollView(title: InfoCardListViewModel.Category.designers.title,
-                                 infoCardList: InfoCardListViewModel.infoCardModels(category: .designers),
-                                 seeAllSelected: seeAllSelected)
+            HorizontalScrollView(vm: HorizontalScrollViewModel(title: InfoCardListViewModel.Category.events.title,
+                                                               infoCardList: InfoCardListViewModel.infoCardModels(category: .events),
+                                                               shouldScroll: true,
+                                                               seeAllSelected: seeAllSelected))
+            HorizontalScrollView(vm: HorizontalScrollViewModel(title: InfoCardListViewModel.Category.designers.title,
+                                                               infoCardList: InfoCardListViewModel.infoCardModels(category: .designers),
+                                                               shouldScroll: true,
+                                                               seeAllSelected: seeAllSelected))
+                                 
         }
     }
 

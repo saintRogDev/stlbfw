@@ -38,7 +38,7 @@ extension Text {
         self.font(.system(size: size))
             .fixedSize(horizontal: false, vertical: true)
             .foregroundColor(scheme == .light ? .black : .primary)
-            .fontWeight(.semibold)
+//            .fontWeight(.semibold)
             .multilineTextAlignment(.leading)
             .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: alignment)
 
