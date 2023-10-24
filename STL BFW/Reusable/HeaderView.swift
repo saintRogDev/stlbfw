@@ -33,6 +33,7 @@ struct HeaderView<Conent: View>: View {
                 }
                 .padding(.bottom, 15)
             }
+            .frame(maxWidth: .infinity)
         }
         .standardBackground(scheme: colorScheme)
     }

@@ -46,10 +46,8 @@ struct DetailsViewViewModel {
 
         var descriptionAlignment: TextAlignment {
             switch self {
-            case .designer(_):
-                return .center
             default:
-                return . leading
+                return .leading
             }
         }
     }
@@ -60,19 +58,19 @@ struct DetailsViewViewModel {
     let titleText: String
     let descriptionText: String?
     let imageUrl: String?
-    let location: String?
+    let location: Location?
     private (set) var links: Links?
     let type: Category
 
     init (category: DetailsViewViewModel.Category) {
         switch category {
         case .designer(let designer):
-            headerImage = nil
+            headerImage = designer.headerImageName
             headerText = designer.brand
             pretitleText = nil
             titleText = designer.name
             descriptionText = designer.description
-            imageUrl = designer.instagram
+            imageUrl = designer.spreadImage
             location = nil
 
             if let ig = designer.instagram {
@@ -91,12 +89,12 @@ struct DetailsViewViewModel {
 
         case .event(let event):
             headerImage = nil
-            headerText = event.title
+            headerText = event.shortTitle
             pretitleText = event.date
             titleText = event.title
             descriptionText = event.description
             imageUrl = nil
-            location = event.location.address
+            location = event.location
             links =  event.link.map {
                 Links(tickets: Link(title: $0.title,
                                     image: "pass",
@@ -106,12 +104,24 @@ struct DetailsViewViewModel {
         case .partner(let partner):
             headerImage = partner.imageName
             headerText = nil
-            pretitleText = nil
-            titleText = partner.eventName
-            descriptionText = partner.location?.name
+            pretitleText =  partner.eventName
+            titleText = partner.location?.name ?? ""
+            descriptionText = partner.description
             imageUrl = nil
-            location = partner.location?.address
-            links = nil
+            location = partner.location
+            if let ig = partner.instagram {
+                links = Links(instagram: Link(title: "Instagram",
+                                              image: "camera.circle",
+                                              url: ig))
+            }
+            if let web = partner.website {
+                let currentIg = links?.instagram
+                links = Links(instagram: currentIg,
+                              website: Link(title: "Website",
+                                            image: "globe",
+                                            url: web))
+                
+            }
         }
         type = category
     }

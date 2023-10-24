@@ -24,12 +24,13 @@ extension Text {
     }
 
     func preTitleText(size: CGFloat,
-                      scheme: ColorScheme = .light) -> some View {
+                      scheme: ColorScheme = .light,
+                      alignment: Alignment = .leading) -> some View {
         self.font(.system(size: size))
             .foregroundColor(scheme == .light ? .black.opacity(0.6) : .secondary)
             .fontWeight(.semibold)
             .multilineTextAlignment(.leading)
-            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
+            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: alignment)
     }
 
     func titleText(size: CGFloat, 

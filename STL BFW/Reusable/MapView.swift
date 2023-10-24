@@ -67,7 +67,7 @@ struct MapView: View {
         }
     }
 
-    func geocodeAddress() {
+    private func geocodeAddress() {
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address) { (placemarks, error) in
             if let placemark = placemarks?.first,
@@ -84,5 +84,19 @@ struct MapView: View {
                 print("Unable to geocode address")
             }
         }
+    }
+    
+    static func canGeocodeAddress(address: String) -> Bool  {
+        let geocoder = CLGeocoder()
+        var geocodable = false
+        geocoder.geocodeAddressString(address) { (placemarks, error) in
+            if let placemark = placemarks?.first,
+               let _ = placemark.location {
+                geocodable =  true
+            } else {
+                geocodable = false
+            }
+        }
+        return geocodable
     }
 }

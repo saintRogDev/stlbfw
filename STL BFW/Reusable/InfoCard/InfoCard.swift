@@ -75,6 +75,8 @@ struct InfoCard: View {
                     .overlay {
                         model.headerImageName.map {
                             Image($0)
+                                .resizable()
+                                .frame(width: 160, height: 160)
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                         }
                     }

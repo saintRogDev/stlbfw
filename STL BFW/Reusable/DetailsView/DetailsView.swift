@@ -20,21 +20,29 @@ struct DetailsView: View {
 
     var body: some View {
         VStack (spacing: 10) {
-           header
-            VStack(alignment: vm.imageUrl != nil ? .center : .leading, spacing: 6) {
+            header
+            VStack (spacing: 10) {
                 pretitle
                 title
-                ScrollView {
-                    description
+                if case .designer = vm.type {
                     links
+                } else if case .event = vm.type {
+                    ScrollView {
+                        description
+                        mapView
+                        Spacer()
+                    }
+                    ticketLink
+                } else if case .partner = vm .type {
+                    links
+                    description
                     mapView
                 }
-                Spacer()
-                ticketLink
-                    .padding(.bottom, 15)
             }
-            .padding(.horizontal, 14)
-            Spacer()
+            .padding(.horizontal, 15)
+            if case .designer = vm.type {
+                spreadView
+            }
         }
         .background {
             colorScheme == .light ? Color.white : Color.black
@@ -42,6 +50,11 @@ struct DetailsView: View {
         .onChange(of: urlStringToShow) { newValue in
             if newValue != nil {
                 showInAppBrowser = true
+            }
+        }
+        .onChange(of: showInAppBrowser) { newValue in
+            if showInAppBrowser == false  {
+                self.urlStringToShow = nil
             }
         }
         .fullScreenCover(isPresented: $showInAppBrowser) {
@@ -63,19 +76,29 @@ struct DetailsView: View {
                             .headingText(size: 35)
                             .padding(.horizontal, 20)
                     }
-                    vm.headerImage.map {
-                        Image($0)
-                            .clipped()
+                    if case .partner = vm.type {
+                        vm.headerImage.map {
+                            Image($0)
+                                .clipped()
+                        }
                     }
                 }
                 
             }
             .frame(maxHeight: 150)
-            vm.imageUrl.map { _ in
-                Circle()
-                    .frame(width: 100, height: 100)
-                    .foregroundColor(.gray)
+            if case .designer = vm.type {
+                vm.headerImage.map { headerImage in
+                    ZStack {
+                        Circle()
+                            .frame(width: 100, height: 100)
+                            .foregroundColor(.gray)
+                        Image(headerImage)
+                            .resizable()
+                            .frame(width: 100, height: 100)
+                            .clipShape(Circle())
+                    }
                     .padding(.top, -50)
+                }
             }
         }
     }
@@ -104,27 +127,56 @@ struct DetailsView: View {
     }
 
     var mapView: some View {
-        vm.location.map {
-            MapView(address: $0)
-                .frame(width: 350, height: 200)
-                .clipShape(RoundedRectangle(cornerRadius: 8.0))
-                .padding(.top, 10)
+        vm.location.map { location in
+            VStack {
+                ZStack {
+                    MapView(address: location.address)
+                        .frame(width: 350, height: 200)
+                        .clipShape(RoundedRectangle(cornerRadius: 8.0))
+                        .padding(.top, 10)
+                    if let name = location.name,
+                       location.address.isEmpty == false  {
+                        Text(name)
+                            .preTitleText(size: 16, alignment: .center)
+                    }
+                }
+                Text(location.address)
+                    .detailsText(size: 12)
+                    .padding(.leading, 5)
+            }
         }
     }
-
-    var  links: some View {
-        vm.links.map { links in
-            HStack {
-                Spacer()
-                igLink
-                if vm.links?.website != nil {
-                    Spacer()
+    
+    var spreadView: some View {
+        ScrollView(.horizontal) {
+            HStack(alignment: .top, spacing: 15) {
+                ScrollView {
+                    description
+                        .frame(maxWidth: 250, maxHeight: .infinity)
                 }
-                webLink
-                Spacer()
+                .padding(.leading, 15)
+                
+                Divider()
+
+                vm.imageUrl.map {
+                    Image($0)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(maxWidth: 350)
+                        .clipShape(RoundedRectangle(cornerRadius: 8.0))
+                        .padding(.trailing, 15)
+                }
             }
-            .padding(.vertical, 5)
         }
+    }
+    
+    var links: some View {
+        HStack {
+            igLink
+            Spacer()
+            webLink
+        }
+        .padding(.vertical, 5)
     }
     
     var igLink: some View {
@@ -163,12 +215,15 @@ struct DetailsView: View {
     
     var ticketLink: some View {
         vm.links?.tickets.map { ticketLink in
-            Text(ticketLink.title)
-                .asLongButton {
-                    if let url = URL(string: ticketLink.url) {
-                        urlStringToShow = url
+            VStack(spacing: 10) {
+                Text(ticketLink.title)
+                    .asLongButton {
+                        if let url = URL(string: ticketLink.url) {
+                            urlStringToShow = url
+                        }
                     }
-                }
+            }
+            .padding(.bottom, 15)
         }
     }
     

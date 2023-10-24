@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import UniformTypeIdentifiers
 
 struct InfoPageViewModel {
     var partnerCardModel: [InfoCardModel] = Partner.Partners.map { $0.infoCardModel }
@@ -16,6 +16,7 @@ struct InfoPage: View {
     @Environment(\.colorScheme) var colorScheme
     let vm: InfoPageViewModel
     @State private var showMailView: Bool = false
+    @State private var showAlert: Bool = false
     @State private var showFeedback: Bool = false
 
 
@@ -26,16 +27,16 @@ struct InfoPage: View {
                 partners
                 feedbackCard
                 contact
+                appfFeedback
             }
             .sheet(isPresented: $showFeedback, content: { FeedbackView() })
         }
-        .sheet(isPresented: Binding(get: {
-            showMailView && MFMailComposeViewController.canSendMail() == true
-        }, set: { value in
-            showMailView = value
-        })) {
+        .sheet(isPresented: $showMailView, content: {
             MailComposeViewController(isShowing: self.$showMailView)
-        }
+        })
+        .alert("Contact Email\nconnect@stlbfw.com\nhas been coppied to your clipboard ", isPresented: $showAlert, actions: {
+            Button("OK", role: .cancel) { }
+        })
     }
 
     private var details: some View {
@@ -47,17 +48,35 @@ struct InfoPage: View {
     }
 
     private var partners: some View {
-        HorizontalScrollView(vm: HorizontalScrollViewModel(title: "Partners",
-                                                           infoCardList: vm.partnerCardModel,
-                                                           shouldScroll: false,
-                                                           seeAllSelected: nil))
+        VStack(spacing: 0) {
+            Text("Partners")
+                .titleText(size: 20, scheme: .dark)
+            ScrollView(.horizontal) {
+                Image("partners")
+            }
+        }
     }
 
     private var contact: some View {
         Text("Contact")
-            .asLongButton(imageName: "envelope",
+            .asLongButton {
+                if MFMailComposeViewController.canSendMail() == true  {
+                    showMailView = true
+                } else {
+                    UIPasteboard.general.setValue("connect@stlbfw.com",
+                                                  forPasteboardType: UTType.plainText.identifier)
+                    showAlert = true
+                }
+            }
+            .padding(.horizontal, 10)
+    }
+
+    
+    private var appfFeedback: some View {
+        Text("App Feedback")
+            .asLongButton(imageName: "square.and.pencil",
                           action: {
-                showMailView = true
+                showFeedback = true
             })
             .padding(.horizontal, 10)
     }
@@ -70,16 +89,17 @@ struct InfoPage: View {
                 .detailsText(size: 14)
             VStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, content: {
                 Button {
-                    showFeedback = true
+//                    TODO: update with URL
                 } label: {
                     HStack{
                         Image(systemName: "square.and.pencil")
                         Text("Submit feedback")
+                            .underline()
                     }
                     .foregroundColor(.black)
                     .padding(.vertical, 10)
                     .frame(maxWidth: .infinity)
-                    .bordered()
+//                    .bordered()
                 }
             })
         }
