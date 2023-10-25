@@ -91,9 +91,7 @@ struct InfoCard: View {
                     .preTitleText(size: 13)
             }
             Text(model.titleText)
-                .titleText(size: 16)
-//            Text(model.descriptionText)
-//                .detailsText(size: 14)
+                .titleText(size: 16, scheme: .light)
         }
         .frame(width: 140)
     }

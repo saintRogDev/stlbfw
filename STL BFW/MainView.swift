@@ -44,6 +44,9 @@ struct MainView: View {
                 UITabBar.appearance().backgroundColor = UIColor(.black)
             }
         })
+        .onAppear {
+            UITabBar.appearance().backgroundColor = UIColor(.black)
+        }
     }
 }
 

@@ -5,19 +5,22 @@
 //  Created by Roger ADT on 9/23/23.
 //
 
+import Combine
 import MapKit
 import SwiftUI
 
 struct DetailsView: View {
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.dismiss) var dismiss
     @State var urlStringToShow: URL?
     @State var showInAppBrowser: Bool = false
-    private let vm: DetailsViewViewModel
-
+    @State var showFullImage: Bool = false
+    @ObservedObject var vm: DetailsViewViewModel
+    
     init(category: DetailsViewViewModel.Category) {
         vm = DetailsViewViewModel(category: category)
     }
-
+    
     var body: some View {
         VStack (spacing: 10) {
             header
@@ -44,8 +47,10 @@ struct DetailsView: View {
                 spreadView
             }
         }
+        .fullImageView(image: $vm.fullImage)
         .background {
-            colorScheme == .light ? Color.white : Color.black
+            colorScheme == .light ? Color.white.ignoresSafeArea() : Color.black
+                .ignoresSafeArea()
         }
         .onChange(of: urlStringToShow) { newValue in
             if newValue != nil {
@@ -63,46 +68,51 @@ struct DetailsView: View {
             }
         }
     }
-
+    
     var header: some View {
-        VStack {
+        ZStack(alignment: .top) {
+            Color(.black)
+                .frame(maxWidth: .infinity,
+                       maxHeight: vm.type.isEvent ? 150 : 200)
             VStack(spacing: 0) {
-                ZStack {
-                    Color(.black)
-                        .frame(maxWidth: .infinity,
-                               maxHeight: 200)
-                    vm.headerText.map {
-                        Text($0)
-                            .headingText(size: 35)
-                            .padding(.horizontal, 20)
-                    }
-                    if case .partner = vm.type {
-                        vm.headerImage.map {
-                            Image($0)
-                                .clipped()
+                vm.headerText.map {
+                    Text($0)
+                        .headingText(size: 35)
+                        .padding(.horizontal, 20)
+                }
+                if case .designer = vm.type {
+                    vm.headerImage.map { headerImage in
+                        ZStack {
+                            Circle()
+                                .frame(width: 100, height: 100)
+                                .foregroundColor(.gray)
+                            Image(headerImage)
+                                .resizable()
+                                .frame(width: 100, height: 100)
+                                .clipShape(Circle())
+                                .onTapGesture {
+                                    vm.imageSelected(image: headerImage)
+                                    showFullImage = true
+                                }
                         }
                     }
                 }
-                
             }
-            .frame(maxHeight: 150)
-            if case .designer = vm.type {
-                vm.headerImage.map { headerImage in
-                    ZStack {
-                        Circle()
-                            .frame(width: 100, height: 100)
-                            .foregroundColor(.gray)
-                        Image(headerImage)
-                            .resizable()
-                            .frame(width: 100, height: 100)
-                            .clipShape(Circle())
-                    }
-                    .padding(.top, -50)
-                }
+            .padding(.top, 70)
+            HStack {
+                Button(action: {
+                    dismiss()
+                }, label: {
+                    Text("Done")
+                        .barButtonText()
+                })
+                Spacer()
             }
+            .padding(.top, 10 )
+            .padding(.leading, 15)
         }
     }
-
+    
     var pretitle: some View {
         vm.pretitleText.map {
             Text($0)
@@ -114,57 +124,48 @@ struct DetailsView: View {
     var title: some View {
         Text(vm.titleText)
             .titleText(size: 20,
-            scheme: colorScheme)
+                       scheme: colorScheme)
     }
     
     var description: some View {
         vm.descriptionText.map {
             Text($0)
                 .detailsText(size: 15,
-                             textAlignment: vm.type.descriptionAlignment,
                              scheme: colorScheme)
         }
     }
-
+    
     var mapView: some View {
         vm.location.map { location in
-            VStack {
-                ZStack {
-                    MapView(address: location.address)
-                        .frame(width: 350, height: 200)
-                        .clipShape(RoundedRectangle(cornerRadius: 8.0))
-                        .padding(.top, 10)
-                    if let name = location.name,
-                       location.address.isEmpty == false  {
-                        Text(name)
-                            .preTitleText(size: 16, alignment: .center)
-                    }
-                }
-                Text(location.address)
-                    .detailsText(size: 12)
-                    .padding(.leading, 5)
-            }
+            MapView(address: location.address,
+                    name: location.name)
+            .frame(width: 350, height: 265)
         }
     }
     
     var spreadView: some View {
         ScrollView(.horizontal) {
-            HStack(alignment: .top, spacing: 15) {
+            HStack(alignment: .top, spacing: 8) {
                 ScrollView {
                     description
                         .frame(maxWidth: 250, maxHeight: .infinity)
                 }
                 .padding(.leading, 15)
-                
+                Spacer()
                 Divider()
-
-                vm.imageUrl.map {
-                    Image($0)
+                    .foregroundColor(.primary)
+                Spacer()
+                vm.imageUrl.map { image in
+                    Image(image)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(maxWidth: 350)
                         .clipShape(RoundedRectangle(cornerRadius: 8.0))
                         .padding(.trailing, 15)
+                        .onTapGesture {
+                            vm.imageSelected(image: image)
+                            showFullImage = true
+                        }
                 }
             }
         }
@@ -173,8 +174,10 @@ struct DetailsView: View {
     var links: some View {
         HStack {
             igLink
-            Spacer()
+            Divider()
+                .frame(width: 2, height: 12)
             webLink
+            Spacer()
         }
         .padding(.vertical, 5)
     }
@@ -230,7 +233,7 @@ struct DetailsView: View {
     @ViewBuilder
     func showInAppBrowser(for _urlString: String?) -> some View {
         if let urlString = _urlString,
-            let url = URL(string: urlString) {
+           let url = URL(string: urlString) {
             SafariView(url: url)
         }
         EmptyView()
@@ -242,4 +245,4 @@ struct DetailsView_Previews: PreviewProvider {
         Text("Hello World")
     }
 }
-           
+

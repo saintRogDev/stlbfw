@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct DetailsViewViewModel {
+final class  DetailsViewViewModel: ObservableObject {
     struct Link {
         let title: String
         let image: String?
@@ -43,26 +43,83 @@ struct DetailsViewViewModel {
                 return partner.id
             }
         }
-
-        var descriptionAlignment: TextAlignment {
+        
+        var isEvent: Bool {
             switch self {
+            case .event(_):
+                return true
             default:
-                return .leading
+                return false
             }
         }
+        
     }
 
-    let headerImage: String?
-    let headerText: String?
-    let pretitleText: String?
-    let titleText: String
-    let descriptionText: String?
-    let imageUrl: String?
-    let location: Location?
-    private (set) var links: Links?
-    let type: Category
+    @Published private (set) var headerImage: String?
+    @Published private (set) var headerText: String?
+    @Published private (set) var pretitleText: String?
+    @Published private (set) var titleText: String
+    @Published private (set) var descriptionText: String?
+    @Published private (set) var imageUrl: String?
+    @Published private (set) var location: Location?
+    @Published private (set) var links: Links?
+    @Published private (set) var type: Category
+    @Published var fullImage: String = ""
 
     init (category: DetailsViewViewModel.Category) {
+        switch category {
+        case .designer(let designer):
+            headerImage = designer.headerImageName
+            headerText = designer.brand
+            pretitleText = nil
+            titleText = designer.name
+            descriptionText = designer.description
+            imageUrl = designer.spreadImage
+            location = nil
+
+            if let ig = designer.instagram,
+               designer.website == nil {
+                links = Links(instagram: Link(title: "Instagram",
+                                              image: "camera.circle",
+                                              url: ig))
+            } else if let web = designer.website,
+                      let ig = designer.instagram {
+                links = Links(instagram: Link(title: "Instagram",
+                                              image: "camera.circle",
+                                              url: ig),
+                              website: Link(title: "Website",
+                                            image: "globe",
+                                            url: web))
+                
+            }
+
+        case .event(let event):
+            headerImage = nil
+            headerText = event.shortTitle
+            pretitleText = event.date
+            titleText = event.title
+            descriptionText = event.description
+            imageUrl = nil
+            location = event.location
+            links =  event.link.map {
+                Links(tickets: Link(title: $0.title,
+                                    image: "pass",
+                                    url: $0.url))
+            }
+
+        case .partner(let partner):
+            headerImage = partner.imageName
+            headerText = nil
+            pretitleText =  partner.eventName
+            titleText = partner.location?.name ?? ""
+            descriptionText = partner.description
+            imageUrl = nil
+            location = partner.location
+        }
+        type = category   
+    }
+    
+    private func setup(category: DetailsViewViewModel.Category) {
         switch category {
         case .designer(let designer):
             headerImage = designer.headerImageName
@@ -124,5 +181,39 @@ struct DetailsViewViewModel {
             }
         }
         type = category
+    }
+    
+    func imageSelected(image: String) {
+        fullImage = image
+    }
+    
+    func loadNext(category: DetailsViewViewModel.Category) {
+        switch  category {
+        case .designer(let current):
+            let designers = Designer.designers
+            let optionalIndex = designers.firstIndex(where: { temp in
+                current.name == temp.name && current.brand == temp.brand
+            })
+            if let index = optionalIndex,
+               index + 1 < designers.endIndex {
+                setup(category: .designer(designers[index + 1]))
+            } else {
+                setup(category: .designer(designers[0]))
+            }
+        case .event(let current):
+            let events = Event.events
+            let optionalIndex = events.firstIndex(where: { temp in
+                current.date == temp.date && current.title == temp.title
+            })
+            
+            if let index = optionalIndex,
+               index + 1 < events.endIndex {
+                setup(category: .event(events[index + 1]))
+            } else {
+                setup(category: .event(events[0]))
+            }
+        default:
+            return
+        }
     }
 }

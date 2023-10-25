@@ -17,7 +17,7 @@ struct CheckBoxView: View {
             Image(systemName: isChecked ? "checkmark.square" : "square")
                 .resizable()
                 .frame(width: 24, height: 24)
-                .foregroundColor(isChecked ? .black : .gray)
+                .foregroundColor(isChecked ? .white : .gray)
         }
     }
 }

@@ -24,12 +24,16 @@ struct MapView: View {
         span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
     )
 
-    let address: String
+    @State var address: String
+    let name: String?
     let postalAddress: CNPostalAddress
     @State private var pin: Pin?
 
-    init(address: String, pin: Pin? = nil) {
+    init(address: String,
+         name: String? = nil,
+         pin: Pin? = nil) {
         self.address = address
+        self.name = name
         self.pin = pin
         let addressComponents = address
             .components(separatedBy: ",")
@@ -49,21 +53,35 @@ struct MapView: View {
     }
 
     var body: some View {
-        VStack {
-            self.pin.map { pin in
+        VStack(alignment: .leading) {
+            if let pin = self.pin {
                 Map(coordinateRegion: $region,
                     annotationItems: [pin].compactMap { $0 }) { pin in
                     MapPin(coordinate: pin.coordinate, tint: .black)
+                
                 }
-                    .onTapGesture {
-                        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: pin.coordinate, 
-                                                                       postalAddress: postalAddress ))
-                        mapItem.openInMaps()
-                    }
+                    .clipShape(RoundedRectangle(cornerRadius: 8.0))
             }
+            VStack(alignment: .leading, spacing: 0) {
+                name.map {
+                    Text($0)
+                        .font(.caption)
+                }
+                Text(address)
+                    .font(.caption)
+            }
+            .padding(.leading, 5)
         }
+        .padding(.vertical, 10)
         .onAppear {
             geocodeAddress()
+        }
+        .onTapGesture {
+            if let pin = pin {
+                let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: pin.coordinate,
+                                                               postalAddress: postalAddress ))
+                mapItem.openInMaps()
+            }
         }
     }
 

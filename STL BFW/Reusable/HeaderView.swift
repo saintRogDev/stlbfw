@@ -9,8 +9,10 @@ import SwiftUI
 
 struct HeaderView<Conent: View>: View {
     @Environment(\.colorScheme) var colorScheme
+    @State var selectedImage: String = ""
     let title: String
     let content: () -> Conent
+    
 
     var body: some View {
         NavigationView {
@@ -19,6 +21,7 @@ struct HeaderView<Conent: View>: View {
                     .title()
                 headerWithContent
             }
+            .fullImageView(image: $selectedImage)
         }
     }
 
@@ -29,6 +32,9 @@ struct HeaderView<Conent: View>: View {
                     Image("Banner23")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
+                        .onTapGesture {
+                            self.selectedImage = "Banner23"
+                        }
                     content()
                 }
                 .padding(.bottom, 15)

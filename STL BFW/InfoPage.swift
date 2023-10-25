@@ -18,6 +18,8 @@ struct InfoPage: View {
     @State private var showMailView: Bool = false
     @State private var showAlert: Bool = false
     @State private var showFeedback: Bool = false
+    @State private var showInAppBrowser: Bool = false
+    @State private var showSite: Bool = false
 
 
     var body: some View {
@@ -28,15 +30,33 @@ struct InfoPage: View {
                 feedbackCard
                 contact
                 appfFeedback
+                Spacer()
+                Text("Visit Our Website")
+                    .underline()
+                    .onTapGesture {
+                        showSite = true
+                    }
+                Spacer()
             }
             .sheet(isPresented: $showFeedback, content: { FeedbackView() })
         }
         .sheet(isPresented: $showMailView, content: {
             MailComposeViewController(isShowing: self.$showMailView)
         })
-        .alert("Contact Email\nconnect@stlbfw.com\nhas been coppied to your clipboard ", isPresented: $showAlert, actions: {
+        .alert("Contact Email connect@stlbfw.com has been coppied to your clipboard", isPresented: $showAlert, actions: {
             Button("OK", role: .cancel) { }
         })
+        .fullScreenCover(isPresented: $showInAppBrowser) {
+            if let url = URL(string: "https://docs.google.com/forms/d/e/1FAIpQLSdFSQ3izzBgzoQxOwzGk_-HEqktvY2kRvkqYMygMG1BeYXEBA/viewform?pli=1") {
+                SafariView(url: url)
+            }
+        }
+        .fullScreenCover(isPresented: $showSite) {
+            if let url = URL(string: "https://www.stlbfw.com/history") {
+                SafariView(url: url)
+            }
+        }
+        
     }
 
     private var details: some View {
@@ -86,10 +106,10 @@ struct InfoPage: View {
             Text("Feedback")
                 .titleText(size: 16)
             Text("If you have feedback about this year's Saint Louis Black Fashion Week please submit a form below detailing your thoughts, or reach out to us on instagram @stlbfw")
-                .detailsText(size: 14)
+                .detailsText(size: 14, scheme: .light)
             VStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, content: {
                 Button {
-//                    TODO: update with URL
+                    showInAppBrowser = true
                 } label: {
                     HStack{
                         Image(systemName: "square.and.pencil")
@@ -99,7 +119,6 @@ struct InfoPage: View {
                     .foregroundColor(.black)
                     .padding(.vertical, 10)
                     .frame(maxWidth: .infinity)
-//                    .bordered()
                 }
             })
         }

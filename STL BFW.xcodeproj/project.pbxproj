@@ -30,9 +30,12 @@
 		83B102C42AB9607500721B6B /* InfoCardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B102C32AB9607500721B6B /* InfoCardListView.swift */; };
 		83B102C62AB9643D00721B6B /* View+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B102C52AB9643D00721B6B /* View+Reusable.swift */; };
 		83B102C92AB973BF00721B6B /* HorizontalScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B102C82AB973BF00721B6B /* HorizontalScrollView.swift */; };
+		DB3F0DAA2AE9B7BB0071EAFB /* FeedbackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3F0DA92AE9B7BB0071EAFB /* FeedbackViewModel.swift */; };
 		DB42B4E52AE4177100935BCD /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB42B4E42AE4177100935BCD /* MainView.swift */; };
 		DB8337552AD78B3E0086FBAA /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8337542AD78B3E0086FBAA /* DetailsViewModel.swift */; };
 		DB8337572AE0C19C0086FBAA /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8337562AE0C19C0086FBAA /* SafariView.swift */; };
+		DBAA766F2AE9BDE80016D78F /* FullImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAA766E2AE9BDE80016D78F /* FullImageView.swift */; };
+		DBB884AA2AE9B311004ABF71 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB884A92AE9B311004ABF71 /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,9 +83,12 @@
 		83B102C32AB9607500721B6B /* InfoCardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCardListView.swift; sourceTree = "<group>"; };
 		83B102C52AB9643D00721B6B /* View+Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Reusable.swift"; sourceTree = "<group>"; };
 		83B102C82AB973BF00721B6B /* HorizontalScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalScrollView.swift; sourceTree = "<group>"; };
+		DB3F0DA92AE9B7BB0071EAFB /* FeedbackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewModel.swift; sourceTree = "<group>"; };
 		DB42B4E42AE4177100935BCD /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		DB8337542AD78B3E0086FBAA /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		DB8337562AE0C19C0086FBAA /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
+		DBAA766E2AE9BDE80016D78F /* FullImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullImageView.swift; sourceTree = "<group>"; };
+		DBB884A92AE9B311004ABF71 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +162,8 @@
 			children = (
 				83B102942AB28CAE00721B6B /* STL_BFWApp.swift */,
 				DB42B4E42AE4177100935BCD /* MainView.swift */,
+				DB3F0DA82AE9B79E0071EAFB /* Feedback */,
+				83188D292AC8BA2A00EF88D0 /* InfoPage.swift */,
 				83B102C12AB9604100721B6B /* Home */,
 				83B102C72AB9648C00721B6B /* Reusable */,
 				83B102982AB28CAF00721B6B /* Assets.xcassets */,
@@ -195,8 +203,6 @@
 			isa = PBXGroup;
 			children = (
 				83B102962AB28CAE00721B6B /* HomeView.swift */,
-				83188D292AC8BA2A00EF88D0 /* InfoPage.swift */,
-				83188D2B2AC8E7AA00EF88D0 /* FeedbackView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -212,6 +218,8 @@
 				83188D272AC8B6CB00EF88D0 /* HeaderView.swift */,
 				83188D2D2AC8ED5D00EF88D0 /* CheckBoxView.swift */,
 				DB8337562AE0C19C0086FBAA /* SafariView.swift */,
+				DBB884A92AE9B311004ABF71 /* LoadingView.swift */,
+				DBAA766E2AE9BDE80016D78F /* FullImageView.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -223,6 +231,15 @@
 				83B102C32AB9607500721B6B /* InfoCardListView.swift */,
 			);
 			path = InfoCard;
+			sourceTree = "<group>";
+		};
+		DB3F0DA82AE9B79E0071EAFB /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				83188D2B2AC8E7AA00EF88D0 /* FeedbackView.swift */,
+				DB3F0DA92AE9B7BB0071EAFB /* FeedbackViewModel.swift */,
+			);
+			path = Feedback;
 			sourceTree = "<group>";
 		};
 		DB8337532AD78B2C0086FBAA /* DetailsView */ = {
@@ -370,11 +387,14 @@
 				83185A442ACE77C000E44126 /* Partner.swift in Sources */,
 				8348DAA12ABFECAD00B41B10 /* DetailsView.swift in Sources */,
 				83B102C92AB973BF00721B6B /* HorizontalScrollView.swift in Sources */,
+				DB3F0DAA2AE9B7BB0071EAFB /* FeedbackViewModel.swift in Sources */,
+				DBB884AA2AE9B311004ABF71 /* LoadingView.swift in Sources */,
 				83185A482ACE781900E44126 /* Location.swift in Sources */,
 				83B102C62AB9643D00721B6B /* View+Reusable.swift in Sources */,
 				83188D2C2AC8E7AA00EF88D0 /* FeedbackView.swift in Sources */,
 				83188D282AC8B6CB00EF88D0 /* HeaderView.swift in Sources */,
 				83185A462ACE77CF00E44126 /* Event.swift in Sources */,
+				DBAA766F2AE9BDE80016D78F /* FullImageView.swift in Sources */,
 				83B102972AB28CAE00721B6B /* HomeView.swift in Sources */,
 				83B102C02AB626A300721B6B /* InfoCard.swift in Sources */,
 				DB8337572AE0C19C0086FBAA /* SafariView.swift in Sources */,
@@ -561,7 +581,7 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -604,7 +624,7 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
