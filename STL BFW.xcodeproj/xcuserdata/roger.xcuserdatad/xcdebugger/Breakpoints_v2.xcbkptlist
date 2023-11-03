@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "41256F55-0BFD-41A3-B99C-70FDB3F53FDB"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5FE56710-9980-46EC-8669-9025785F8ECE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "STL BFW/Reusable/DetailsView/DetailsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "5FE56710-9980-46EC-8669-9025785F8ECE - 756c595b5ae882e0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 () -&gt; Swift.Optional&lt;STL_BFW.SafariView&gt; in STL_BFW.DetailsView.body.getter : some"
+                  moduleName = "STL BFW"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/roger/Documents/GitHub/stlbfw/STL%20BFW/Reusable/DetailsView/DetailsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "1888">
+               </Location>
+               <Location
+                  uuid = "5FE56710-9980-46EC-8669-9025785F8ECE - 756c595b5ae882e0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 () -&gt; Swift.Optional&lt;STL_BFW.SafariView&gt; in STL_BFW.DetailsView.body.getter : some"
+                  moduleName = "STL BFW"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/roger/Documents/GitHub/stlbfw/STL%20BFW/Reusable/DetailsView/DetailsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "2052">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "99C6DE02-E1D1-4254-BB3C-7CBE44BE7365"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "STL BFW/Reusable/DetailsView/DetailsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "makeUIViewController(context:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "99C6DE02-E1D1-4254-BB3C-7CBE44BE7365 - 440fd1d9737ad8ab"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "STL_BFW.SafariView.makeUIViewController(context: SwiftUI.UIViewControllerRepresentableContext&lt;STL_BFW.SafariView&gt;) -&gt; __C.SFSafariViewController"
+                  moduleName = "STL BFW"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/roger/Documents/GitHub/stlbfw/STL%20BFW/Reusable/DetailsView/DetailsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "179"
+                  endingLineNumber = "179"
+                  offsetFromSymbolStart = "112">
+               </Location>
+               <Location
+                  uuid = "99C6DE02-E1D1-4254-BB3C-7CBE44BE7365 - 440fd1d9737ad88a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "STL_BFW.SafariView.makeUIViewController(context: SwiftUI.UIViewControllerRepresentableContext&lt;STL_BFW.SafariView&gt;) -&gt; __C.SFSafariViewController"
+                  moduleName = "STL BFW"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/roger/Documents/GitHub/stlbfw/STL%20BFW/Reusable/DetailsView/DetailsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "178"
+                  endingLineNumber = "178"
+                  offsetFromSymbolStart = "124">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2248039C-F99A-4C56-A4C7-32FCCD776184"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "STL BFW/Reusable/DetailsView/DetailsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "202A69CF-D70E-4A6F-8DE9-23B04E839F32"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "STL BFW/Home/Home.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "mainContent"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "202A69CF-D70E-4A6F-8DE9-23B04E839F32 - 96f04416a36b2ecb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(STL_BFW.HorizontalScrollView, STL_BFW.HorizontalScrollView)&gt; in STL_BFW.Home.mainContent.getter : some"
+                  moduleName = "STL BFW"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/roger/Documents/GitHub/stlbfw/STL%20BFW/Home/Home.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "152">
+               </Location>
+               <Location
+                  uuid = "202A69CF-D70E-4A6F-8DE9-23B04E839F32 - 96f04416a36b2ecb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(STL_BFW.HorizontalScrollView, STL_BFW.HorizontalScrollView)&gt; in STL_BFW.Home.mainContent.getter : some"
+                  moduleName = "STL BFW"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/roger/Documents/GitHub/stlbfw/STL%20BFW/Home/Home.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "156">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3E000E7E-64B9-4F8E-9B27-8BEF832C1A6A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "STL BFW/Home/Home.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "mainContent"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C2101BDD-C634-4FDE-8A3C-24719A46430A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "STL BFW/Home/Home.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "mainContent"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7A8FFE4C-D88F-453C-99FD-15AC8E814095"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "STL BFW/Reusable/View+Reusable.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "convertToDate(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

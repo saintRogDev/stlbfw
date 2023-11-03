@@ -54,6 +54,24 @@ extension Text {
             .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: alignment)
 
     }
+    
+    func asLongButton(imageName: String? = nil,
+                      action: @escaping () -> Void) -> some View {
+        Button {
+            action()
+        } label: {
+            HStack{
+                if let image = imageName {
+                    Image(systemName: image)
+                }
+                self
+            }
+            .foregroundColor(.black)
+            .padding(.vertical, 10)
+            .frame(maxWidth: .infinity)
+            .bordered()
+        }
+    }
 }
 
 extension View {
@@ -100,5 +118,13 @@ extension View {
             .padding(.horizontal, 5)
             self
         }
+    }
+}
+
+extension Date {
+    static func convertToDate(_ dateString: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy MMMM d h:mm a"
+        return dateFormatter.date(from: "2023 ".appending(dateString))
     }
 }

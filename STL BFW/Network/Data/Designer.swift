@@ -56,7 +56,9 @@ struct Designer: Identifiable, Codable, Cardable {
     }
 
     static var designers: [Designer] {
-        [designer10, designer9, designer5, designer6, designer7, designer1, designer8, designer3, designer2, designer4]
+        [designer10, designer9, designer5, designer6, designer7, designer1, designer8, designer3, designer2, designer4].sorted { lhs, rhs in
+            return lhs.brand <   rhs.brand
+        }
     }
 
     private static var designer1: Designer {

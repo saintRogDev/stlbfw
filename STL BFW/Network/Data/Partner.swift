@@ -25,7 +25,9 @@ struct Partner: Identifiable, Cardable {
     }
 
     static var Partners: [Partner] {
-        [partner1, partner2, partner3, partner4, partner5]
+        [partner1, partner2, partner3, partner4, partner5].sorted { lhs, rhs in
+            lhs.name < rhs.name
+        }
     }
 
 

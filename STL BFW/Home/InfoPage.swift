@@ -52,20 +52,11 @@ struct InfoPage: View {
     }
 
     private var contact: some View {
-        VStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, content: {
-            Button {
+        Text("Contact")
+            .asLongButton(imageName: "envelope",
+                          action: {
                 showMailView = true
-            } label: {
-                HStack{
-                    Image(systemName: "envelope")
-                    Text("Contact")
-                }
-                .foregroundColor(.black)
-                .padding(.vertical, 10)
-                .frame(maxWidth: .infinity)
-                .bordered()
-            }
-        })
+            })
     }
 
     private var feedbackCard: some View {

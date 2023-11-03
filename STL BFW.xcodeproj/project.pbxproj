@@ -30,6 +30,7 @@
 		83B102C42AB9607500721B6B /* InfoCardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B102C32AB9607500721B6B /* InfoCardListView.swift */; };
 		83B102C62AB9643D00721B6B /* View+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B102C52AB9643D00721B6B /* View+Reusable.swift */; };
 		83B102C92AB973BF00721B6B /* HorizontalScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B102C82AB973BF00721B6B /* HorizontalScrollView.swift */; };
+		DB8337552AD78B3E0086FBAA /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8337542AD78B3E0086FBAA /* DetailsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		83B102C32AB9607500721B6B /* InfoCardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCardListView.swift; sourceTree = "<group>"; };
 		83B102C52AB9643D00721B6B /* View+Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Reusable.swift"; sourceTree = "<group>"; };
 		83B102C82AB973BF00721B6B /* HorizontalScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalScrollView.swift; sourceTree = "<group>"; };
+		DB8337542AD78B3E0086FBAA /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,7 +202,7 @@
 				83D522282AC467F600CA81F5 /* InfoCard */,
 				83B102C52AB9643D00721B6B /* View+Reusable.swift */,
 				83B102C82AB973BF00721B6B /* HorizontalScrollView.swift */,
-				8348DAA02ABFECAD00B41B10 /* DetailsView.swift */,
+				DB8337532AD78B2C0086FBAA /* DetailsView */,
 				8348DAA22ABFF82C00B41B10 /* MapView.swift */,
 				83188D272AC8B6CB00EF88D0 /* HeaderView.swift */,
 				83188D2D2AC8ED5D00EF88D0 /* CheckBoxView.swift */,
@@ -215,6 +217,15 @@
 				83B102C32AB9607500721B6B /* InfoCardListView.swift */,
 			);
 			path = InfoCard;
+			sourceTree = "<group>";
+		};
+		DB8337532AD78B2C0086FBAA /* DetailsView */ = {
+			isa = PBXGroup;
+			children = (
+				8348DAA02ABFECAD00B41B10 /* DetailsView.swift */,
+				DB8337542AD78B3E0086FBAA /* DetailsViewModel.swift */,
+			);
+			path = DetailsView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -365,6 +376,7 @@
 				8348DAA72AC12DD400B41B10 /* Designer.swift in Sources */,
 				83188D302ACBAA4300EF88D0 /* Network.swift in Sources */,
 				83B102952AB28CAE00721B6B /* STL_BFWApp.swift in Sources */,
+				DB8337552AD78B3E0086FBAA /* DetailsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
