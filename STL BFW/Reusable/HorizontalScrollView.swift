@@ -67,7 +67,6 @@ struct HorizontalScrollView: View {
                         scrollView.scrollTo(id)
                     }
                 }
-//                .scrollDisabled(vm.infoCardList.count < 3)
             }
         }
     }

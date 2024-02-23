@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "E02FECD5-C68F-4E0A-BF99-25C17FA69D00.heic",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "E02FECD5-C68F-4E0A-BF99-25C17FA69D00 1.heic",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "E02FECD5-C68F-4E0A-BF99-25C17FA69D00 2.heic",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

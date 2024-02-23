@@ -13,17 +13,6 @@ struct Feedback: Codable {
     var comment: String = ""
     var contactRequested: Bool = false
     var rating: Int = 0
-
-    var isValid: Bool {
-        return !name.isEmpty && !comment.isEmpty && rating > 0 && isValidEmail(email)
-    }
-
-    private func isValidEmail(_ email: String) -> Bool {
-        let emailRegex = #"^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"#
-
-        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
-        return emailPredicate.evaluate(with: email)
-    }
 }
 
 class FeedbackViewModel: ObservableObject {
@@ -43,15 +32,36 @@ class FeedbackViewModel: ObservableObject {
     
     @Published var showAlert: Bool = false
     @Published var loading: String = ""
+    
+    private var service: Networking
+    
+    // Dependancy injection for tesability
+    init(_ service: Networking? = nil) {
+        if let service = service {
+            self.service = service
+        } else {
+            self.service = Service.shared
+        }
+    }
+    
+    private func isValid(_ feeedback: Feedback) -> Bool {
+        return !feedback.name.isEmpty && !feedback.comment.isEmpty && feedback.rating > 0 && isValidEmail(feedback.email)
+    }
 
-    func submitButtonTap() {
-        if feedback.isValid {
+    private func isValidEmail(_ email: String) -> Bool {
+        let emailRegex = #"^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"#
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+        return emailPredicate.evaluate(with: email)
+    }
+
+    func submitButtonTap() async {
+        if isValid(feedback) {
             loading = "Submitting feedback..."
             Task.init {
                 do {
-                    let response: Feedback? = try await Networking.shared.post(from: "/data/Feedback",
-                                                                               body: feedback)
-                    if let response = response {
+                    let response: Feedback? = try await service.post(from: "/data/Feedback",
+                                                                     body: feedback)
+                    if response != nil {
                         self.response = .success
                         loading = ""
                         statusString = "Thank you for your feedback."

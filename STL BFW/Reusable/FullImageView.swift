@@ -9,7 +9,6 @@ import SwiftUI
 
 struct FullImageView: View {
     @Binding var imageName: String
-//    @State private var scale: CGFloat = 1.0
     
     var body: some View {
         ZStack {
@@ -21,13 +20,6 @@ struct FullImageView: View {
                 Image(imageName)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-//                    .scaleEffect(scale)
-//                    .gesture(
-//                        MagnificationGesture()
-//                            .onChanged { gestureScale in
-//                                self.scale = gestureScale
-//                            }
-//                    )
                 Text("Tap to dismiss")
             }
             .onTapGesture {

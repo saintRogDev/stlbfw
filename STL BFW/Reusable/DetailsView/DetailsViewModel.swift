@@ -94,7 +94,7 @@ final class  DetailsViewViewModel: ObservableObject {
             }
 
         case .event(let event):
-            headerImage = nil
+            headerImage = event.image
             headerText = event.shortTitle
             pretitleText = event.date
             titleText = event.title
@@ -181,6 +181,16 @@ final class  DetailsViewViewModel: ObservableObject {
             }
         }
         type = category
+    }
+    
+    func showPersonalLink() -> Bool {
+        switch type {
+        case .designer(let designer):
+            return designer.personalIg != nil
+        default:
+            break
+        }
+        return false
     }
     
     func imageSelected(image: String) {

@@ -48,8 +48,6 @@ struct MapView: View {
             print("Invalid address format")
         }
         postalAddress = postal
-        geocodeAddress()
-
     }
 
     var body: some View {
@@ -61,16 +59,16 @@ struct MapView: View {
                 
                 }
                     .clipShape(RoundedRectangle(cornerRadius: 8.0))
-            }
-            VStack(alignment: .leading, spacing: 0) {
-                name.map {
-                    Text($0)
+                VStack(alignment: .leading, spacing: 0) {
+                    name.map {
+                        Text($0)
+                            .font(.caption)
+                    }
+                    Text(address)
                         .font(.caption)
                 }
-                Text(address)
-                    .font(.caption)
+                .padding(.leading, 5)
             }
-            .padding(.leading, 5)
         }
         .padding(.vertical, 10)
         .onAppear {

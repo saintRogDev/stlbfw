@@ -23,13 +23,13 @@
 		83B102972AB28CAE00721B6B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B102962AB28CAE00721B6B /* HomeView.swift */; };
 		83B102992AB28CAF00721B6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83B102982AB28CAF00721B6B /* Assets.xcassets */; };
 		83B1029D2AB28CAF00721B6B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83B1029C2AB28CAF00721B6B /* Preview Assets.xcassets */; };
-		83B102A72AB28CB000721B6B /* STL_BFWTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B102A62AB28CB000721B6B /* STL_BFWTests.swift */; };
 		83B102B12AB28CB000721B6B /* STL_BFWUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B102B02AB28CB000721B6B /* STL_BFWUITests.swift */; };
 		83B102B32AB28CB000721B6B /* STL_BFWUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B102B22AB28CB000721B6B /* STL_BFWUITestsLaunchTests.swift */; };
 		83B102C02AB626A300721B6B /* InfoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B102BF2AB626A300721B6B /* InfoCard.swift */; };
 		83B102C42AB9607500721B6B /* InfoCardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B102C32AB9607500721B6B /* InfoCardListView.swift */; };
 		83B102C62AB9643D00721B6B /* View+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B102C52AB9643D00721B6B /* View+Reusable.swift */; };
 		83B102C92AB973BF00721B6B /* HorizontalScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B102C82AB973BF00721B6B /* HorizontalScrollView.swift */; };
+		DB3893CC2B87FCCA006593DD /* FeeedbackViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3893CB2B87FCCA006593DD /* FeeedbackViewModelTests.swift */; };
 		DB3F0DAA2AE9B7BB0071EAFB /* FeedbackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3F0DA92AE9B7BB0071EAFB /* FeedbackViewModel.swift */; };
 		DB42B4E52AE4177100935BCD /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB42B4E42AE4177100935BCD /* MainView.swift */; };
 		DB8337552AD78B3E0086FBAA /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8337542AD78B3E0086FBAA /* DetailsViewModel.swift */; };
@@ -75,7 +75,6 @@
 		83B1029A2AB28CAF00721B6B /* STL_BFW.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = STL_BFW.entitlements; sourceTree = "<group>"; };
 		83B1029C2AB28CAF00721B6B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		83B102A22AB28CB000721B6B /* STL BFWTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "STL BFWTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		83B102A62AB28CB000721B6B /* STL_BFWTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STL_BFWTests.swift; sourceTree = "<group>"; };
 		83B102AC2AB28CB000721B6B /* STL BFWUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "STL BFWUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83B102B02AB28CB000721B6B /* STL_BFWUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STL_BFWUITests.swift; sourceTree = "<group>"; };
 		83B102B22AB28CB000721B6B /* STL_BFWUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STL_BFWUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -83,6 +82,7 @@
 		83B102C32AB9607500721B6B /* InfoCardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCardListView.swift; sourceTree = "<group>"; };
 		83B102C52AB9643D00721B6B /* View+Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Reusable.swift"; sourceTree = "<group>"; };
 		83B102C82AB973BF00721B6B /* HorizontalScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalScrollView.swift; sourceTree = "<group>"; };
+		DB3893CB2B87FCCA006593DD /* FeeedbackViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeedbackViewModelTests.swift; sourceTree = "<group>"; };
 		DB3F0DA92AE9B7BB0071EAFB /* FeedbackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewModel.swift; sourceTree = "<group>"; };
 		DB42B4E42AE4177100935BCD /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		DB8337542AD78B3E0086FBAA /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 		83B102A52AB28CB000721B6B /* STL BFWTests */ = {
 			isa = PBXGroup;
 			children = (
-				83B102A62AB28CB000721B6B /* STL_BFWTests.swift */,
+				DB3893CB2B87FCCA006593DD /* FeeedbackViewModelTests.swift */,
 			);
 			path = "STL BFWTests";
 			sourceTree = "<group>";
@@ -412,7 +412,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83B102A72AB28CB000721B6B /* STL_BFWTests.swift in Sources */,
+				DB3893CC2B87FCCA006593DD /* FeeedbackViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,13 +565,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "STL BFW/STL_BFW.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"STL BFW/Preview Content\"";
 				DEVELOPMENT_TEAM = Z2JH9FX775;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "STL BFW";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -581,14 +582,14 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.doerhouse.STLBFW;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -608,13 +609,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "STL BFW/STL_BFW.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"STL BFW/Preview Content\"";
 				DEVELOPMENT_TEAM = Z2JH9FX775;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "STL BFW";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -624,14 +626,14 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.doerhouse.STLBFW;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;

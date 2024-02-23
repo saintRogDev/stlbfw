@@ -20,6 +20,9 @@ struct InfoPage: View {
     @State private var showFeedback: Bool = false
     @State private var showInAppBrowser: Bool = false
     @State private var showSite: Bool = false
+    @State private var showDev: Bool = false
+    @State private var showPrivacy: Bool = false
+    @State private var showTerms: Bool = false
 
 
     var body: some View {
@@ -31,11 +34,33 @@ struct InfoPage: View {
                 contact
                 appfFeedback
                 Spacer()
-                Text("Visit Our Website")
-                    .underline()
-                    .onTapGesture {
-                        showSite = true
-                    }
+                VStack(spacing: 5) {
+                    Text("Visit Our Website")
+                        .underline()
+                        .onTapGesture {
+                            showSite = true
+                        }
+                    Text("Terms & Conditions")
+                        .underline()
+                        .onTapGesture {
+                            showTerms = true
+                        }
+                    Text("Privacy Policy")
+                        .underline()
+                        .onTapGesture {
+                            showPrivacy = true
+                        }
+                    Text("Powered by...")
+                        .underline()
+                        .font(.caption2)
+                        .onTapGesture {
+                            if let url = URL(string: "https://saintrog.com") {
+                                if UIApplication.shared.canOpenURL(url) {
+                                    UIApplication.shared.open(url)
+                                }
+                            }
+                        }
+                }
                 Spacer()
             }
             .sheet(isPresented: $showFeedback, content: { FeedbackView() })
@@ -56,7 +81,16 @@ struct InfoPage: View {
                 SafariView(url: url)
             }
         }
-        
+        .fullScreenCover(isPresented: $showTerms) {
+            if let url = URL(string: "https://www.saintrog.com/stlbfwterms") {
+                SafariView(url: url)
+            }
+        }
+        .fullScreenCover(isPresented: $showPrivacy) {
+            if let url = URL(string: "https://www.saintrog.com//stlbfwprivacy") {
+                SafariView(url: url)
+            }
+        }
     }
 
     private var details: some View {

@@ -26,7 +26,7 @@ struct HomeView: View {
                                                                infoCardList: InfoCardListViewModel.infoCardModels(category: .designers),
                                                                shouldScroll: true,
                                                                seeAllSelected: seeAllSelected))
-                                 
+            Spacer()
         }
     }
 

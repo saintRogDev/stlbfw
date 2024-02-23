@@ -33,7 +33,6 @@ struct InfoCardModel: Identifiable {
     let headerImageName: String?
     let pretitleText: String?
     let titleText: String
-//    let descriptionText: String? = "Tap to Explore"
     let type: Category
 }
 

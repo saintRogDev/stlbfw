@@ -14,11 +14,13 @@ enum NetworkError: Error {
     case decodingError
 }
 
-class Networking {
-   static let shared = Networking()
-    private init() {}
-//    D247E555-6A8E-343A-FFEB-7DDC74647200/FE6FBDD5-4DAF-4E97-BB40-D8584A1971A8/data/Feedback"
+protocol Networking {
+    func post<T: Codable>(from path: String, body: T) async throws  -> T
+}
 
+class Service: Networking {
+   static let shared = Service()
+    private init() {}
 
     func post<T: Codable>(from path: String, body: T) async throws  -> T {
         guard let url = URL(string: "https://api.backendless.com/" + "\(appID)/" + apiKey  + path) else {
@@ -48,7 +50,7 @@ class Networking {
         }
     }
 
-    var apiKey: String {
+    private var apiKey: String {
         if let plistPath = Bundle.main.path(forResource: "Prod", ofType: "plist"),
            let plistData = FileManager.default.contents(atPath: plistPath) {
             do {
@@ -65,7 +67,7 @@ class Networking {
         return ""
     }
 
-    var appID: String {
+    private var appID: String {
         if let plistPath = Bundle.main.path(forResource: "Prod", ofType: "plist"),
            let plistData = FileManager.default.contents(atPath: plistPath) {
             do {

@@ -13,16 +13,14 @@ struct HeaderView<Conent: View>: View {
     let title: String
     let content: () -> Conent
     
-
+    
     var body: some View {
-        NavigationView {
-            VStack {
-                Text(title)
-                    .title()
-                headerWithContent
-            }
-            .fullImageView(image: $selectedImage)
+        VStack {
+            Text(title)
+                .title()
+            headerWithContent
         }
+        .fullImageView(image: $selectedImage)
     }
 
     private var headerWithContent: some View {

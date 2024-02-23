@@ -26,7 +26,11 @@ struct DetailsView: View {
             header
             VStack (spacing: 10) {
                 pretitle
-                title
+                if vm.showPersonalLink() {
+                    titlePlus
+                } else {
+                    title
+                }
                 if case .designer = vm.type {
                     links
                 } else if case .event = vm.type {
@@ -36,10 +40,6 @@ struct DetailsView: View {
                         Spacer()
                     }
                     ticketLink
-                } else if case .partner = vm .type {
-                    links
-                    description
-                    mapView
                 }
             }
             .padding(.horizontal, 15)
@@ -75,11 +75,23 @@ struct DetailsView: View {
                 .frame(maxWidth: .infinity,
                        maxHeight: vm.type.isEvent ? 150 : 200)
             VStack(spacing: 0) {
+                
                 vm.headerText.map {
                     Text($0)
                         .headingText(size: 35)
                         .padding(.horizontal, 20)
                 }
+                .overlay(content: {
+                    if case .event = vm.type  {
+                        vm.headerImage.map { img in
+                            Image(img)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                        }
+                    } else {
+                        EmptyView()
+                    }
+                })
                 if case .designer = vm.type {
                     vm.headerImage.map { headerImage in
                         ZStack {
@@ -107,9 +119,16 @@ struct DetailsView: View {
                         .barButtonText()
                 })
                 Spacer()
+//
+//                Button(action: {
+//                    vm.loadNext(category: vm.type)
+//                }, label: {
+//                    Text("Next")
+//                        .barButtonText()
+//                })
             }
             .padding(.top, 10 )
-            .padding(.leading, 15)
+            .padding(.horizontal, 15)
         }
     }
     
@@ -119,6 +138,25 @@ struct DetailsView: View {
                 .preTitleText(size: 14,
                               scheme: colorScheme)
         }
+    }
+    
+    var titlePlus: some View {
+        Text(vm.titleText)
+            .underline()
+            .titleText(size: 20,
+                       scheme: colorScheme)
+            .onTapGesture {
+                switch vm.type {
+                case .designer(let designer):
+                    if let designerIg = designer.personalIg,
+                       let url = URL(string: designerIg) {
+                        urlStringToShow = url
+                    }
+                default:
+                    break
+                }
+                
+            }
     }
     
     var title: some View {

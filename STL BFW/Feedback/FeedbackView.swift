@@ -12,7 +12,6 @@ struct FeedbackView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var vm = FeedbackViewModel()
 
-
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
             HStack {
@@ -121,7 +120,9 @@ struct FeedbackView: View {
 
     var submitButton: some View {
         Button {
-            vm.submitButtonTap()
+            Task {
+                await vm.submitButtonTap()
+            }
         } label: {
             HStack{
                 Text("Submit")
